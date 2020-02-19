@@ -16,7 +16,7 @@ const UpdateMovie = props => {
 
         axios
             .get(`http://localhost:5000/api/movies/${props.match.params.id}`)
-            .then(res => console.log('test movie call for udpate', res))
+            .then(res => setMovie(res.data))
             .catch(err => console.log(err))
         // const selectedMovie = props.movies.find(movie => {
         //     return `${movie.id}` === props.match.params.id;
@@ -27,9 +27,10 @@ const UpdateMovie = props => {
         // }
     }, [props.match.params.id])
 
+    console.log('test if movie is updated', movie);
+
     const changeHandler = e => {
         e.persist();
-
         let value = e.target.value;
 
         setMovie({
@@ -41,10 +42,13 @@ const UpdateMovie = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        const updatedMovie = movie;
+
         axios
-            .put(`http://localhost:5000/api/movies/${movie.id}`, movie)
-            .then(res => console.log(res))
+            .put(`http://localhost:5000/api/movies/${movie.id}`, updatedMovie)
+            .then(res => console.log('did it update?', res))
             .catch(err => console.error(err))
+
     }
 
     return (
