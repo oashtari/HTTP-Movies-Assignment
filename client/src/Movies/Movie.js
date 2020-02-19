@@ -53,37 +53,6 @@ export default class Movie extends React.Component {
   }
 }
 
-
-
-
-// const updateMovie = e => {
-//   // e.preventDefault();
-//   const selectedMovie =
-//     axios
-//       .get(`http://localhost:5000/api/movies/${props.movie.id}`)
-//       .then(res => console.log('here is the movie', res.data))
-//       .catch(err => console.log(err))
-
-//   useEffect(() => {
-//     console.log('is this the movie', selectedMovie);
-
-//   }, [selectedMovie])
-
-
-//   return (<Route
-//     path='/update-movie/:id'
-//     render={selectedMovie => {
-//       return <UpdateMovie {...selectedMovie} />
-//     }} />)
-// }
-
-{/* <Route
-      path='/update-movie/:id'
-      render={props => {
-        return <UpdateMovie {...props} />
-      }} /> */}
-
-
 // deleteMovie = () => {
 //   axios.delete(`http://localhost:5000/api/movies/${this.state.movie.id}`)
 //     .then(res => this.props.history.push("/"))

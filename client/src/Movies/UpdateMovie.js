@@ -11,8 +11,13 @@ const emptyMovie = {
 
 const UpdateMovie = props => {
     const [movie, setMovie] = useState(emptyMovie);
-    console.log('test props', props);
+
     useEffect(() => {
+
+        axios
+            .get(`http://localhost:5000/api/movies/${props.match.params.id}`)
+            .then(res => console.log('test movie call for udpate', res))
+            .catch(err => console.log(err))
         // const selectedMovie = props.movies.find(movie => {
         //     return `${movie.id}` === props.match.params.id;
         // });
@@ -20,7 +25,7 @@ const UpdateMovie = props => {
         // if (selectedMovie) {
         //     setMovie(selectedMovie)
         // }
-    }, [props.movies, props.match.params.id])
+    }, [props.match.params.id])
 
     const changeHandler = e => {
         e.persist();
@@ -36,7 +41,6 @@ const UpdateMovie = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-
         axios
             .put(`http://localhost:5000/api/movies/${movie.id}`, movie)
             .then(res => console.log(res))
