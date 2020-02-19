@@ -10,6 +10,7 @@ const emptyMovie = {
 }
 
 const UpdateMovie = props => {
+    console.log('what is in props', props)
     const [movie, setMovie] = useState(emptyMovie);
 
     useEffect(() => {
@@ -30,7 +31,7 @@ const UpdateMovie = props => {
     console.log('test if movie is updated', movie);
 
     const changeHandler = e => {
-        e.persist();
+        // e.persist();
         let value = e.target.value;
 
         setMovie({
