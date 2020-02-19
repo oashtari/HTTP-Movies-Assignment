@@ -10,7 +10,6 @@ const emptyMovie = {
 }
 
 const UpdateMovie = props => {
-    console.log('what is in props', props)
     const [movie, setMovie] = useState(emptyMovie);
 
     useEffect(() => {
@@ -36,7 +35,7 @@ const UpdateMovie = props => {
 
         setMovie({
             ...movie,
-            [e.target.value]: value
+            [e.target.name]: value
         })
     }
 
@@ -47,7 +46,9 @@ const UpdateMovie = props => {
 
         axios
             .put(`http://localhost:5000/api/movies/${movie.id}`, updatedMovie)
-            .then(res => console.log('did it update?', res))
+            .then(res => {
+                props.history.push("/")
+            })
             .catch(err => console.error(err))
 
     }
