@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 import MovieCard from "./MovieCard";
+import UpdateMovie from "./UpdateMovie";
+import { Link } from "react-router-dom";
+
 export default class Movie extends React.Component {
   constructor(props) {
     super(props);
@@ -31,6 +34,7 @@ export default class Movie extends React.Component {
     addToSavedList(this.state.movie);
   };
 
+
   render() {
     if (!this.state.movie) {
       return <div>Loading movie information...</div>;
@@ -42,7 +46,48 @@ export default class Movie extends React.Component {
         <div className="save-button" onClick={this.saveMovie}>
           Save
         </div>
+        <button className="update-button" onClick={() => this.props.history.push(`/update-movie/${this.state.movie.id}`)}>Update Movie</button>
+        <div className='delete-button' onClick={this.deleteMovie}>Delete this movie</div>
       </div>
     );
   }
 }
+
+
+
+
+// const updateMovie = e => {
+//   // e.preventDefault();
+//   const selectedMovie =
+//     axios
+//       .get(`http://localhost:5000/api/movies/${props.movie.id}`)
+//       .then(res => console.log('here is the movie', res.data))
+//       .catch(err => console.log(err))
+
+//   useEffect(() => {
+//     console.log('is this the movie', selectedMovie);
+
+//   }, [selectedMovie])
+
+
+//   return (<Route
+//     path='/update-movie/:id'
+//     render={selectedMovie => {
+//       return <UpdateMovie {...selectedMovie} />
+//     }} />)
+// }
+
+{/* <Route
+      path='/update-movie/:id'
+      render={props => {
+        return <UpdateMovie {...props} />
+      }} /> */}
+
+
+// deleteMovie = () => {
+//   axios.delete(`http://localhost:5000/api/movies/${this.state.movie.id}`)
+//     .then(res => this.props.history.push("/"))
+//     .catch(error => console.log(error));
+
+//   this.props.updateSavedList(this.state.movie.id);
+// }
